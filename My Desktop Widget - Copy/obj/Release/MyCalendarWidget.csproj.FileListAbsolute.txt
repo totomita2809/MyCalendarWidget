@@ -1,0 +1,63 @@
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\default_user.png
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\app_icon.ico
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\cadao.txt
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\credentials.json
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\My Desktop Widget.exe.config
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\My Desktop Widget.exe.manifest
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\My Desktop Widget.application
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\My Desktop Widget.exe
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\My Desktop Widget.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.Auth.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.Auth.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.Calendar.v3.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.Calendar.v3.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.Core.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.Core.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.PeopleService.v1.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Google.Apis.PeopleService.v1.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Microsoft.Toolkit.Uwp.Notifications.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Microsoft.Toolkit.Uwp.Notifications.pdb
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\Newtonsoft.Json.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Buffers.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.IO.Pipelines.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Memory.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Numerics.Vectors.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Text.Encodings.Web.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Text.Json.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\bin\Release\System.Threading.Tasks.Extensions.dll
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\MyCalendarWidget.csproj.AssemblyReference.cache
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\MyCalendarWidget.csproj.SuggestedBindingRedirects.cache
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget.exe.config
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\AddEventWindow.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\CalendarDayControl.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\ConfirmDeleteWindow.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\CustomToast.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\DeletedHistoryWindow.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\EditEventWindow.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\MainWindow.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\SettingsWindow.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\App.baml
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\AddEventWindow.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\CalendarDayControl.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\ConfirmDeleteWindow.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\CustomToast.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\DeletedHistoryWindow.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\EditEventWindow.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\MainWindow.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\Views\SettingsWindow.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\App.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget_Content.g.cs
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget_MarkupCompile.cache
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget.g.resources
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My_Desktop_Widget.Properties.Resources.resources
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\MyCalendarWidget.csproj.GenerateResource.cache
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\MyCalendarWidget.csproj.CoreCompileInputs.cache
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget.exe.manifest
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget.application
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\MyCalend.30F9ED84.Up2Date
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget.exe
+E:\New folder\My Desktop Widget\My Desktop Widget\obj\Release\My Desktop Widget.pdb

@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="My Desktop Widget/MyCalendarWidget.csproj" Id="dde60fb0-ecf0-4465-9568-3def31faf0d9">
+    <BuildType Project="Release" />
+  </Project>
+  <Project Path="MyCalendarWidgetSetup/MyCalendarWidgetSetup.vdproj" Type="Installer">
+    <BuildType Project="Release" />
+  </Project>
+</Solution>

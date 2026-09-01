@@ -1,0 +1,139 @@
+﻿<Window x:Class="MyCalendarWidget.Views.DeleteRecurrenceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Xóa sự kiện lặp lại" Height="260" Width="440"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="15" Color="#FF2D00" Direction="0" ShadowDepth="0" Opacity="0.3"/>
+    </Window.Effect>
+
+    <Border Background="#1A1A1A" CornerRadius="12" BorderBrush="#33FF3B30" BorderThickness="1.5" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header Tiêu đề -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+                <TextBlock Text="⚠" Foreground="#FF3B30" FontSize="20" FontWeight="Bold" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                <TextBlock Text="XÁC NHẬN XÓA SỰ KIỆN CHUỖI" Foreground="#E0E0E0" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Khu vực hiển thị thông tin sự kiện nghiêm túc -->
+            <Grid Grid.Row="1" Margin="5,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Hàng Sự kiện -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="- Sự kiện:" Foreground="#8E8E93" FontSize="13" Margin="0,0,0,6"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="txtEventName" Foreground="#E0E0E0" FontSize="13" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" Margin="0,0,0,6"/>
+
+                <!-- Hàng Thời gian -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="- Thời gian:" Foreground="#8E8E93" FontSize="13" Margin="0,0,0,6"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="txtEventTime" Foreground="#E0E0E0" FontSize="13" TextWrapping="Wrap" Margin="0,0,0,6"/>
+
+                <!-- Hàng Lặp lại (Sửa Italic thành FontStyle="Italic") -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="- Lặp lại:" Foreground="#8E8E93" FontSize="13"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="txtEventRecurrence" Foreground="#E0E0E0" FontSize="13" FontStyle="Italic"/>
+            </Grid>
+
+            <!-- Thanh nút bấm hành động được căn chỉnh khoảng cách -->
+            <Grid Grid.Row="2" Height="38">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Nút: Toàn bộ sự kiện (Cảnh báo đỏ đen) -->
+                <Button Grid.Column="0" Content="Toàn bộ sự kiện" Margin="0,0,6,0" Click="BtnDeleteAll_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#2D1414"/>
+                            <Setter Property="Foreground" Value="#FF453A"/>
+                            <Setter Property="BorderBrush" Value="#44FF3B30"/>
+                            <Setter Property="FontWeight" Value="SemiBold"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="6">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF3B30"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Nút: Chỉ sự kiện này (Tone xám nền tối) -->
+                <Button Grid.Column="1" Content="Chỉ sự kiện này" Margin="6,0" Click="BtnDeleteOnly_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#2A2A2A"/>
+                            <Setter Property="Foreground" Value="#E0E0E0"/>
+                            <Setter Property="BorderBrush" Value="#44FFFFFF"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="6">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#444444"/>
+                                    <Setter Property="BorderBrush" Value="#88FFFFFF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <!-- Nút: Hủy (Trong suốt thanh thoát) -->
+                <Button Grid.Column="2" Content="Hủy" Margin="6,0,0,0" Click="BtnCancel_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="#8E8E93"/>
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="6">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

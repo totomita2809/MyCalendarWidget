@@ -1,0 +1,22 @@
+﻿<Application x:Class="MyCalendarWidget.Views.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="WidgetBackgroundBrush" Color="#80000000"/>
+
+        <Style x:Key="WidgetBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource WidgetBackgroundBrush}"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style TargetType="ContextMenu">
+            <Setter Property="Background" Value="#CC222222"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

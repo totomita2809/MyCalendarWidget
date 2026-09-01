@@ -1,0 +1,32 @@
+﻿<Window x:Class="MyCalendarWidget.Views.CustomToast"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Notification" 
+        Width="340" 
+        MinHeight="80" 
+        SizeToContent="Height" 
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" WindowStartupLocation="Manual">
+
+    <Border x:Name="brdMain" Background="#F21A1A1A" CornerRadius="15" 
+            BorderThickness="1.5" BorderBrush="Cyan" Margin="10" Padding="5">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15" ShadowDepth="0" Opacity="0.5" Color="Cyan"/>
+        </Border.Effect>
+
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="txtIcon" Grid.Column="0" Text="✅" FontSize="24" Foreground="Cyan" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,10,15,10">
+                <TextBlock x:Name="txtMessage" Text="Thông báo" Foreground="White" 
+                           FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
