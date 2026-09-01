@@ -88,12 +88,14 @@ cd /d "E:\New folder\My Desktop Widget"
 copy /y "MyCalendarWidgetSetup\Release\%JSON_FILE%" "update.json" >nul
 
 
+
 :: ------------------------------------------
 :: BƯỚC 5: ĐẨY UPDATE.JSON VÀ TẠO RELEASE
 :: ------------------------------------------
 echo.
-echo [5/5] Đang đẩy update.json và tạo Release lên GitHub...
+echo [5/5] Đang đồng bộ và tạo Release lên GitHub...
 
+git rm -r --cached .vs bin obj 2>nul
 git add update.json
 git add "*.slnx"
 git add "*.bat"
@@ -115,6 +117,7 @@ cd /d "E:\New folder\My Desktop Widget\MyCalendarWidgetSetup\Release"
 
 gh release create "%VER%" "%MSI_FILE%" "%JSON_FILE%" --title "Version %VER%" --notes "%msg%"
 if %errorlevel% neq 0 goto GIT_ERROR
+
 
 echo.
 echo ==========================================
