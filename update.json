@@ -1,3 +1,5 @@
 ﻿{
-  "notes": "* Thêm tính năng cập nhật cho ứng dụng.\n* Sửa một số lỗi nhỏ và tối ưu hiệu năng."
+  "Version": "111",
+  "ReleaseNotes": "Thêm tính năng cập nhật cho ứng dụng.\nSửa một số lỗi nhỏ và tối ưu hiệu năng.",
+  "InstallerUrl": "https://github.com/totomita2809/MyCalendarWidget/releases/latest/download/MyCalendarWidgetSetup111.msi"
 }
