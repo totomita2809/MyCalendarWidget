@@ -87,17 +87,19 @@ echo [4/5] Đang tạo và đổi tên file update.json vào thư mục gốc...
 cd /d "E:\New folder\My Desktop Widget"
 copy /y "MyCalendarWidgetSetup\Release\%JSON_FILE%" "update.json" >nul
 
+
 :: ------------------------------------------
-:: BƯỚC 5: ĐẨY UPDATE.JSON, MÃ NGUỒN VÀ TẠO RELEASE
+:: BƯỚC 5: ĐẨY UPDATE.JSON VÀ TẠO RELEASE
 :: ------------------------------------------
 echo.
-echo [5/5] Đang đẩy mã nguồn, update.json và tạo Release lên GitHub...
+echo [5/5] Đang đẩy update.json và tạo Release lên GitHub...
 
 git add update.json
-git add "MyCalendarWidget/*.cs"
-git add "MyCalendarWidget/*.xaml"
 git add "*.slnx"
 git add "*.bat"
+git add ".gitignore"
+git add "My Desktop Widget/*.cs"
+git add "My Desktop Widget/Views/*.cs"
 
 set /p msg=Nhập nội dung ghi chú phiên bản v%VER%: 
 if "%msg%"=="" set msg=Release version %VER%

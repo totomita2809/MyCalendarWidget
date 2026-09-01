@@ -1425,13 +1425,8 @@ namespace MyCalendarWidget.Views
         // Luồng tự động quét thư mục Google Drive, ghép MSI với JSON mô tả tương ứng
         private async Task CheckForAppUpdateAsync()
         {
-            string folderUrlOrId = "1xqGL_9Wf2w7-nHJnWPFhJvQZmSJOxC3_";
-
-            string folderId = folderUrlOrId.Contains("/folders/")
-                ? folderUrlOrId.Split(new[] { "/folders/" }, StringSplitOptions.None)[1].Split('?')[0]
-                : folderUrlOrId;
-
-            string listApiUrl = $"https://drive.google.com/embeddedfolderview?id={folderId}#list";
+            // Đường dẫn trỏ thẳng đến file update.json trên kho GitHub của bạn
+            string versionFileUrl = "https://raw.githubusercontent.com/totomita2809/MyCalendarWidget/main/update.json";
 
             try
             {
@@ -1440,90 +1435,58 @@ namespace MyCalendarWidget.Views
                     client.Timeout = TimeSpan.FromSeconds(20);
                     client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 
-                    string html = await client.GetStringAsync(listApiUrl);
-
-                    // Quét tất cả các cặp ID và Tên file xuất hiện trong trang Google Drive HTML
-                    // Biểu thức này bắt trọn mọi tên file và ID đi kèm mà không sợ bị lệch cấu trúc thẻ
-                    var fileMatches = System.Text.RegularExpressions.Regex.Matches(
-                        html,
-                        @"id=""entry-([a-zA-Z0-9_-]+)""[\s\S]*?(MyCalendarWidgetSetup\d+\.(msi|json))",
-                        System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-
-                    Dictionary<string, string> msiFiles = new Dictionary<string, string>(); // Key: "107", Value: fileId của msi
-                    Dictionary<string, string> jsonFiles = new Dictionary<string, string>(); // Key: "107", Value: fileId của json
-
-                    foreach (System.Text.RegularExpressions.Match match in fileMatches)
-                    {
-                        string fileId = match.Groups[1].Value;
-                        string fileName = match.Groups[2].Value;
-
-                        // Trích xuất số version từ tên file (Ví dụ: MyCalendarWidgetSetup107.msi -> "107")
-                        var digitMatch = System.Text.RegularExpressions.Regex.Match(fileName, @"\d+");
-                        if (digitMatch.Success)
-                        {
-                            string digits = digitMatch.Value;
-                            if (fileName.EndsWith(".msi", StringComparison.OrdinalIgnoreCase))
-                            {
-                                if (!msiFiles.ContainsKey(digits)) msiFiles[digits] = fileId;
-                            }
-                            else if (fileName.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
-                            {
-                                if (!jsonFiles.ContainsKey(digits)) jsonFiles[digits] = fileId;
-                            }
-                        }
-                    }
+                    // 1. Tải nội dung file update.json trực tiếp từ GitHub
+                    string fetchedJson = await client.GetStringAsync(versionFileUrl);
 
                     List<VersionItemModel> detectedVersions = new List<VersionItemModel>();
 
-                    foreach (var pair in msiFiles)
+                    if (!string.IsNullOrWhiteSpace(fetchedJson) && !fetchedJson.TrimStart().StartsWith("<"))
                     {
-                        string rawDigits = pair.Key; // Ví dụ "107"
-                        string msiFileId = pair.Value;
-
-                        Version parsedVer = ConvertRawDigitsToVersion(rawDigits);
-                        if (parsedVer != null)
+                        using (JsonDocument noteDoc = JsonDocument.Parse(fetchedJson))
                         {
-                            string releaseNotes = "Cải thiện hiệu năng và tối ưu hóa hệ thống.";
+                            var root = noteDoc.RootElement;
 
-                            // Kiểm tra xem có file JSON tương ứng với số phiên bản này không
-                            if (jsonFiles.ContainsKey(rawDigits))
+                            // Đọc thông tin từ file update.json (Ví dụ trường "Version", "InstallerUrl", "ReleaseNotes")
+                            string rawDigits = "109"; // Mặc định nếu không tìm thấy trường Version
+                            if (root.TryGetProperty("Version", out var verProp))
                             {
-                                try
-                                {
-                                    string jsonUrl = $"https://drive.google.com/uc?export=download&id={jsonFiles[rawDigits]}";
-                                    string fetchedJson = await client.GetStringAsync(jsonUrl);
+                                rawDigits = verProp.GetString();
+                            }
 
-                                    // Kiểm tra dữ liệu trả về có phải HTML lỗi không
-                                    if (!fetchedJson.TrimStart().StartsWith("<"))
-                                    {
-                                        using (JsonDocument noteDoc = JsonDocument.Parse(fetchedJson))
-                                        {
-                                            if (noteDoc.RootElement.TryGetProperty("notes", out var notesProp))
-                                            {
-                                                string parsedNotes = notesProp.GetString();
-                                                if (!string.IsNullOrWhiteSpace(parsedNotes))
-                                                {
-                                                    releaseNotes = parsedNotes.Trim();
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
+                            string releaseNotes = "Cải thiện hiệu năng và tối ưu hóa hệ thống.";
+                            if (root.TryGetProperty("ReleaseNotes", out var notesProp))
+                            {
+                                string parsedNotes = notesProp.GetString();
+                                if (!string.IsNullOrWhiteSpace(parsedNotes))
                                 {
-                                    System.Diagnostics.Debug.WriteLine($"[Lỗi đọc JSON phiên bản {rawDigits}]: {ex.Message}");
+                                    releaseNotes = parsedNotes.Trim();
                                 }
                             }
 
-                            string msiDirectUrl = $"https://drive.google.com/uc?export=open&id={msiFileId}";
-
-                            detectedVersions.Add(new VersionItemModel
+                            // Link tải file msi lấy trực tiếp từ GitHub Releases Latest hoặc từ JSON cấu hình
+                            string msiDirectUrl = "";
+                            if (root.TryGetProperty("InstallerUrl", out var urlProp))
                             {
-                                Version = parsedVer,
-                                VersionTitle = $"v{parsedVer.Major}.{parsedVer.Minor}.{parsedVer.Build}",
-                                ReleaseNotes = releaseNotes,
-                                DownloadUrl = msiDirectUrl
-                            });
+                                msiDirectUrl = urlProp.GetString();
+                            }
+
+                            // Nếu trong JSON không có sẵn InstallerUrl, tự động trỏ đến link Releases chuẩn của GitHub
+                            if (string.IsNullOrEmpty(msiDirectUrl))
+                            {
+                                msiDirectUrl = $"https://github.com/totomita2809/MyCalendarWidget/releases/latest/download/MyCalendarWidgetSetup{rawDigits}.msi";
+                            }
+
+                            Version parsedVer = ConvertRawDigitsToVersion(rawDigits);
+                            if (parsedVer != null)
+                            {
+                                detectedVersions.Add(new VersionItemModel
+                                {
+                                    Version = parsedVer,
+                                    VersionTitle = $"v{parsedVer.Major}.{parsedVer.Minor}.{parsedVer.Build}",
+                                    ReleaseNotes = releaseNotes,
+                                    DownloadUrl = msiDirectUrl
+                                });
+                            }
                         }
                     }
 
@@ -1540,7 +1503,7 @@ namespace MyCalendarWidget.Views
                     }
                     else
                     {
-                        ShowToast("Chưa có bản cập nhật nào trong thư mục!", "Warning");
+                        ShowToast("Chưa có bản cập nhật nào!", "Warning");
                     }
                 }
             }
